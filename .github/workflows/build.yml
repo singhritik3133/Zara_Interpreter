@@ -20,24 +20,47 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Compile ZARA Interpreter
+    - name: Find and Compile all Java files
       run: |
         mkdir -p bin
-        javac -d bin Tokenizer/*.java parser/*.java Evaluator/*.java src/*.java 2>/dev/null || javac -d bin $(find . -name "*.java" ! -path "./bin/*")
+        find . -name "*.java" -not -path "./bin/*" > sources.txt
+        cat sources.txt
+        javac -d bin @sources.txt
         echo "Compilation Successful!"
 
-    - name: Run Test 1 - Arithmetic
+    - name: Find and Run Test 1
       run: |
-        java -cp bin Main samples/test1.zara 2>/dev/null || java -cp bin Main test1.zara 2>/dev/null || echo "Test 1 skipped - file not found"
+        ZARA_FILE=$(find . -name "test1.zara" | head -1)
+        if [ -n "$ZARA_FILE" ]; then
+          echo "Running $ZARA_FILE"
+          java -cp bin Main "$ZARA_FILE"
+        else
+          echo "test1.zara not found - skipping"
+        fi
 
-    - name: Run Test 2 - Strings
+    - name: Find and Run Test 2
       run: |
-        java -cp bin Main samples/test2.zara 2>/dev/null || java -cp bin Main test2.zara 2>/dev/null || echo "Test 2 skipped - file not found"
+        ZARA_FILE=$(find . -name "test2.zara" | head -1)
+        if [ -n "$ZARA_FILE" ]; then
+          java -cp bin Main "$ZARA_FILE"
+        else
+          echo "test2.zara not found - skipping"
+        fi
 
-    - name: Run Test 3 - Conditional
+    - name: Find and Run Test 3
       run: |
-        java -cp bin Main samples/test3.zara 2>/dev/null || java -cp bin Main test3.zara 2>/dev/null || echo "Test 3 skipped - file not found"
+        ZARA_FILE=$(find . -name "test3.zara" | head -1)
+        if [ -n "$ZARA_FILE" ]; then
+          java -cp bin Main "$ZARA_FILE"
+        else
+          echo "test3.zara not found - skipping"
+        fi
 
-    - name: Run Test 4 - Loop
+    - name: Find and Run Test 4
       run: |
-        java -cp bin Main samples/test4.zara 2>/dev/null || java -cp bin Main test4.zara 2>/dev/null || echo "Test 4 skipped - file not found"
+        ZARA_FILE=$(find . -name "test4.zara" | head -1)
+        if [ -n "$ZARA_FILE" ]; then
+          java -cp bin Main "$ZARA_FILE"
+        else
+          echo "test4.zara not found - skipping"
+        fi
