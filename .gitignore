@@ -1,1 +1,62 @@
+# =====================
+# Java Compiled Files
+# =====================
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
 
+# =====================
+# Build Output Folder
+# =====================
+bin/
+out/
+build/
+
+# =====================
+# IDE Files — IntelliJ
+# =====================
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# =====================
+# IDE Files — VS Code
+# =====================
+.vscode/
+*.code-workspace
+
+# =====================
+# IDE Files — Eclipse
+# =====================
+.classpath
+.project
+.settings/
+
+# =====================
+# macOS Files
+# =====================
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# =====================
+# Windows Files
+# =====================
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# =====================
+# Linux Files
+# =====================
+*~
+
+# =====================
+# Logs
+# =====================
+*.log
+logs/
