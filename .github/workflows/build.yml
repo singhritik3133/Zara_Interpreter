@@ -1,1 +1,44 @@
 
+name: ZARA Interpreter Build Check
+
+on:
+  push:
+    branches: [ main, person1-tokenizer, person2-parser, person3-evaluator, person4-testing ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Java
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Compile ZARA Interpreter
+      run: |
+        mkdir -p bin
+        javac -d bin src/*.java
+        echo "Compilation Successful!"
+
+    - name: Run Test 1 - Arithmetic
+      run: |
+        java -cp bin Main samples/test1.zara
+
+    - name: Run Test 2 - Strings
+      run: |
+        java -cp bin Main samples/test2.zara
+
+    - name: Run Test 3 - Conditional
+      run: |
+        java -cp bin Main samples/test3.zara
+
+    - name: Run Test 4 - Loop
+      run: |
+        java -cp bin Main samples/test4.zara
