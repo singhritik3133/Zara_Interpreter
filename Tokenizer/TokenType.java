@@ -1,3 +1,4 @@
+package tokenizer;
 public enum TokenType {
     // Keywords
     SET,        // set
