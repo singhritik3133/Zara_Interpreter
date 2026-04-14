@@ -8,22 +8,15 @@ public class Main {
             System.err.println("Usage: java Main <source-file.zara>");
             System.exit(1);
         }
-
-        String filePath = args[0];
-        String sourceCode;
-
         try {
-            sourceCode = new String(Files.readAllBytes(Paths.get(filePath)));
-        } catch (IOException e) {
-            System.err.println("Error reading file '" + filePath + "': " + e.getMessage());
-            System.exit(1);
-            return;
-        }
-
-        try {
+            String sourceCode = new String(Files.readAllBytes(Paths.get(args[0])));
             new Interpreter().run(sourceCode);
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+            System.exit(1);
         } catch (RuntimeException e) {
             System.err.println("Runtime error: " + e.getMessage());
+            e.printStackTrace();
             System.exit(1);
         }
     }
