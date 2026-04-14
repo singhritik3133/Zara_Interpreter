@@ -1,5 +1,5 @@
-import java.util.HashMap;
-import java.util.Map;
+package Evaluator;
+import java.util.*;
 
 public class Environment {
     private final Map<String, Object> variables = new HashMap<>();
