@@ -1,3 +1,5 @@
+package parser;
+import Evaluator.Environment;
 public class BinaryOpNode implements Expression {
     private final Expression left;
     private final String operator;
