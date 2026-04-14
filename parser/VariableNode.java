@@ -1,3 +1,5 @@
+package parser;
+import Evaluator.Environment;
 public class VariableNode implements Expression {
     private final String name;
 
