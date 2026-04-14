@@ -1,5 +1,3 @@
-package zara;
-
 public class NumberNode implements Expression {
     private final double value;
 
