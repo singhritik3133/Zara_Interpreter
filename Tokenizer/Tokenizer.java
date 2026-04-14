@@ -124,6 +124,7 @@ public class Tokenizer {
             case "show": return new Token(TokenType.SHOW, word, startLine);
             case "when": return new Token(TokenType.WHEN, word, startLine);
             case "loop": return new Token(TokenType.LOOP, word, startLine);
+            case "end":  return new Token(TokenType.END,  word, startLine);
             default:     return new Token(TokenType.IDENTIFIER, word, startLine);
         }
     }
