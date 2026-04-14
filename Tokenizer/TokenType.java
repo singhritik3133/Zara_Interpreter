@@ -4,6 +4,7 @@ public enum TokenType {
     SHOW,       // show
     WHEN,       // when
     LOOP,       // loop
+    END,        // end(Requied for block structure)
 
     // Literals
     NUMBER,     // e.g. 10, 3.14
