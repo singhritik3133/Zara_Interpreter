@@ -1,4 +1,4 @@
-package tokenizer;
+package Tokenizer;
 public class Token {
     private final TokenType type;
     private final String value;
