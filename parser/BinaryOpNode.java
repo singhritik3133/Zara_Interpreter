@@ -1,5 +1,3 @@
-package zara;
-
 public class BinaryOpNode implements Expression {
     private final Expression left;
     private final String operator;
