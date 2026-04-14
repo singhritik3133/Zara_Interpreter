@@ -1,19 +1,12 @@
+package Evaluator;
 import java.util.List;
-
+import Tokenizer.*;
+import parser.*;
 public class Interpreter {
-    public void run(String sourceCode) {
-        // Step 1: Tokenize
-        Tokenizer tokenizer = new Tokenizer(sourceCode);
-        List<Token> tokens = tokenizer.tokenize();
-
-        // Step 2: Parse
-        Parser parser = new Parser(tokens);
-        List<Instruction> instructions = parser.parse();
-
-        // Step 3: Execute
+    public void run(String code) {
+        List<Token> tokens = new Tokenizer(code).tokenize();
+        List<Instruction> instructions = new Parser(tokens).parse();
         Environment env = new Environment();
-        for (Instruction instruction : instructions) {
-            instruction.execute(env);
-        }
+        for (Instruction i : instructions) i.execute(env);
     }
 }
