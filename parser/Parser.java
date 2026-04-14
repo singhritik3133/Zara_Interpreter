@@ -1,5 +1,3 @@
-package zara;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +21,7 @@ public class Parser {
     private Instruction parseInstruction() {
         if (match(TokenType.SET)) {
             String name = consume(TokenType.IDENTIFIER, "Expect variable name").getValue();
-            consume(TokenType.EQUALS, "Expect '=' after variable name");
+            consume(TokenType.EQUAL, "Expect '=' after variable name");
             Expression expr = parseExpression();
             return new AssignInstruction(name, expr);
         } else if (match(TokenType.SHOW)) {
@@ -45,14 +43,13 @@ public class Parser {
         throw new RuntimeException("Unexpected token: " + peek().getValue() + " at line " + peek().getLine());
     }
 
-    private List<Instruction> parseBlock() {
+     private List<Instruction> parseBlock() {
         List<Instruction> body = new ArrayList<>();
-    
-        while (!isAtEnd()) {
+        while (!isAtEnd() && !check(TokenType.END)) {
             if (match(TokenType.NEWLINE)) continue;
-            
             body.add(parseInstruction());
         }
+        consume(TokenType.END, "Expect 'end' at the end of block");
         return body;
     }
 
