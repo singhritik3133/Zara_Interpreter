@@ -1,5 +1,3 @@
-package zara;
-
 public class VariableNode implements Expression {
     private final String name;
 
