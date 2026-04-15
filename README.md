@@ -36,13 +36,15 @@ javac -version
 ```
 
 ### Compile
+Compile all packages from the root directory:
 ```bash
-javac *.java
+javac Tokenizer/*.java parser/*.java Evaluator/*.java
 ```
 
 ### Run a ZARA file
+Run the `Main` class in the `Evaluator` package:
 ```bash
-java Main yourfile.zara
+java Evaluator.Main test.zara
 ```
 
 ---
@@ -112,23 +114,28 @@ Output: 1  2  3  4
 
 ```
 zara-interpreter/
-├── TokenType.java       — All token types (SET, SHOW, NUMBER, etc.)
-├── Token.java           — Immutable token object (type + value + line)
-├── Tokenizer.java       — Converts source code into list of tokens
-├── Expression.java      — Interface for all expression nodes
-├── NumberNode.java      — Represents a number literal
-├── StringNode.java      — Represents a string literal
-├── VariableNode.java    — Represents a variable reference
-├── BinaryOpNode.java    — Represents an operation (x + y * 2)
-├── Environment.java     — Variable store (HashMap of name → value)
-├── Parser.java          — Builds instruction tree from tokens
-├── Instruction.java     — All 4 instruction classes (Assign, Print, If, Repeat)
-├── Interpreter.java     — Chains all 3 stages together
-├── Main.java            — Entry point — reads .zara file and runs it
-├── test1.zara           — Sample: Arithmetic
-├── test2.zara           — Sample: Strings
-├── test3.zara           — Sample: Conditional
-└── test4.zara           — Sample: Loop
+├── Tokenizer/           — Breaks source into labelled tokens
+│   ├── Token.java
+│   ├── TokenType.java
+│   └── Tokenizer.java
+├── parser/              — Builds instruction tree from tokens
+│   ├── Expression.java  — Interface for all expression nodes
+│   ├── NumberNode.java
+│   ├── StringNode.java
+│   ├── VariableNode.java
+│   ├── BinaryOpNode.java
+│   └── Parser.java
+├── Evaluator/           — Executes the parsed instructions
+│   ├── Instruction.java — Interface for all instruction types
+│   ├── AssignInstruction.java
+│   ├── IfInstruction.java
+│   ├── PrintInstruction.java
+│   ├── RepeatInstruction.java
+│   ├── Environment.java — Variable storage
+│   ├── Interpreter.java — Orchestrates the stages
+│   └── Main.java        — Entry point (CLI)
+├── test.zara            — Sample ZARA program
+└── .gitignore           — Excludes .class files
 ```
 
 ---
@@ -137,17 +144,17 @@ zara-interpreter/
 
 | Member | Role | Files Owned |
 |--------|------|-------------|
-| **Person 1** | Tokenizer | TokenType.java, Token.java, Tokenizer.java |
-| **Person 2** | Parser | Expression.java, \*Node.java, Parser.java |
-| **Person 3** | Evaluator | Instruction.java, Interpreter.java, Main.java |
-| **Person 4** | Support + Testing | Environment.java, README.md, Test files |
+| **Vinay Gupta** | Tokenizer | `Tokenizer/*` |
+| **Sajan Kumar** | Parser | `parser/*` |
+| **Harshit Chaturvedi** | Evaluator | `Evaluator/*` (Main, Interpreter, Instructions) |
+| **Ritik Singh** | Support + Testing | `Evaluator/Environment.java`, `README.md`, Testing |
 
 ---
 
 ## 🎓 Course Details
 
 | | |
-|-|-|
+|-----------|--------------------------------------------|
 | **University** | Sitare University |
 | **Course** | Advanced Object-Oriented Programming in Java |
 | **Project** | Take-Home Group Project |
@@ -156,5 +163,5 @@ zara-interpreter/
 ---
 
 <div align="center">
-<strong>Built with ❤️ by Team ZARA — Sitare University</strong>
+<strong>Built with ❤️ by Team ZARA - Sitare University</strong>
 </div>
